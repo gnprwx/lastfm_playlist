@@ -1,0 +1,26 @@
+{
+  "name": "lastfm_playlist",
+  "version": "1.0.0",
+  "description": "React/Vite component that shows LastFM currently playing song and previous played songs",
+  "main": "LastFMPlaylist.tsx",
+  "files": [
+    "sound.gif"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lastfm",
+    "music",
+    "player",
+    "played",
+    "last.fm",
+    "vite",
+    "react"
+  ],
+  "author": "Greg Pappas",
+  "license": "ISC",
+  "peerDependencies": {
+    "axios": "^1.6.5"
+  }
+}
