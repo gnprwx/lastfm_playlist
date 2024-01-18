@@ -39,9 +39,9 @@ Finally, put the component in your code as desired.
 <LastFMPlaylist user={"username"} refresh={30} limit={10} />
 ```
 
-- **user**: _string_ - Put your username here.
-- **refresh**: _number_ - Put the number of seconds you want the component to refresh to keep the list updated.
-- **limit**: _number_ - Shows how many songs in your list. I believe this caps out at 200.
+- **user**: _string_ - Put your username here. Default value is my username.
+- **refresh**: _number_ - Put the number of seconds you want the component to refresh to keep the list updated. Default value is 30.
+- **limit**: _number_ - Shows how many songs in your list. I believe this caps out at 200. Default value is 10.
 
 ## Styling
 
