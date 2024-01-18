@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import sound from "./sound.gif";
 
 interface LFMProps {
@@ -40,11 +39,10 @@ const LastFMPlaylist = ({ user = "vagab0nd_", refresh = 30, limit = 10 }: LFMPro
 
   const getSongs = async () => {
     try {
-      const response = await axios.get(
-        `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${user}&api_key=${LFM}&limit=${limit}&format=json`
-      );
-      const data = await response.data.recenttracks.track;
-      setSongs(data);
+      const response = await fetch
+        (`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${user}&api_key=${LFM}&limit=${limit}&format=json`);
+      const data = await response.json();
+      setSongs(data.recenttracks.track);
     } catch (error) {
       setSongError("Error fetching songs... ;(")
     }
