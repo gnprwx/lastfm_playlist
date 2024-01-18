@@ -1,5 +1,5 @@
 # lastfm_playlist
-
+[![npm version](https://badge.fury.io/js/lastfm_playlist.svg)](https://badge.fury.io/js/lastfm_playlist)
 ## Install
 
 ```
