@@ -25,7 +25,7 @@ This example is using custom styling which is not included.
 You will need an last.fm API key for this to work. You can get one from [here](https://www.last.fm/api/account/create).
 You will then want to add the key to your .env file. If you don't have one, create one in your root directory and then add the following.
 
-```tsx
+```
 VITE_LASTFM = "API_KEY_HERE"
 ```
 
