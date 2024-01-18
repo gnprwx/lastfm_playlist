@@ -76,7 +76,7 @@ const LastFMPlaylist = ({ user = "vagab0nd_", refresh = 30, limit = 10 }: LFMPro
               <>
                 {image[1]["#text"].slice(-36) === PLACEHOLDER_ART ?
                   <div style={CURRENTLY_PLAYING}>
-                    <img src={sound} style={ALBUM_ART} />
+                    <img src={sound} />
                     <a href={url} target="_blank">{artist["#text"]} - {name}</a>
                   </div>
                   :
