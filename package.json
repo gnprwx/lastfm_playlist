@@ -1,6 +1,6 @@
 {
   "name": "lastfm_playlist",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React/Vite component that shows LastFM currently playing song and previous played songs",
   "main": "LastFMPlaylist.tsx",
   "files": [
