@@ -8,7 +8,7 @@ npm i lastfm_playlist
 
 ## About
 
-Lastfm_playlist is designed to work with Vite/React combo. It allows you to display the current song playing with album art and a list of songs previously played. If there's no song playing, it will display "No music playing" at the top of the list. I have replaced the placeholder art with `artist - song` instead since it's pretty ugly.
+Lastfm_playlist is designed to work with the Vite/React combo. It allows you to display the current song playing with album art and a list of songs previously played. If there's no song playing, it will display "No music playing" at the top of the list. I have replaced the placeholder art with `artist - song` instead since it's pretty ugly.
 
 ## Example
 
