@@ -28,7 +28,7 @@ VITE_LASTFM = "API_KEY_HERE";
 Put the following at the top of your component where you want to show your music.
 
 ```tsx
-import LastFMPlayed from "lastfm_played";
+import LastFMPlaylist from "lastfm_playlist";
 ```
 
 ## Component with props
@@ -36,7 +36,7 @@ import LastFMPlayed from "lastfm_played";
 Finally, put the component in your code as desired.
 
 ```tsx
-<LastFMPlayed user={"username"} refresh={30} limit={10} />
+<LastFMPlaylist user={"username"} refresh={30} limit={10} />
 ```
 
 - **user**: _string_ - Put your username here.
