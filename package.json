@@ -1,6 +1,6 @@
 {
   "name": "lastfm_playlist",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React/Vite component that shows LastFM currently playing song and previous played songs",
   "main": "LastFMPlaylist.tsx",
   "files": [
@@ -20,7 +20,11 @@
   ],
   "author": "Greg Pappas",
   "license": "ISC",
-  "peerDependencies": {
+  "homepage": "https://github.com/gnprwx/lastfm_playlist",
+  "url": "https://github.com/gnprwx/lastfm_playlist/issues",
+  "email": "gnpappas@proton.me",
+  "repository": "github:gnprwx/lastfm_playlist.git",
+  "dependencies": {
     "axios": "^1.6.5"
   }
 }
