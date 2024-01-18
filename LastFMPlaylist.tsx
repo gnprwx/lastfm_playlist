@@ -66,13 +66,13 @@ const LastFMPlaylist = ({ user = "vagab0nd_", refresh = 30, limit = 10 }: LFMPro
             <li>{songError}</li>}
         </>
       }
-      {songs.length === 10 &&
+      {songs.length === limit &&
         <li style={{ fontWeight: "700" }}>No music playing</li>
       }
       {songs.map(({ artist, name, url, image }: SongTypes, index) =>
         <li key={index}>
           <>
-            {songs.length === 11 && index === 0 ?
+            {songs.length === limit + 1 && index === 0 ?
               <>
                 {image[1]["#text"].slice(-36) === PLACEHOLDER_ART ?
                   <div style={CURRENTLY_PLAYING}>
