@@ -16,7 +16,7 @@ interface SongTypes {
 }
 
 
-const LastFMPlaylist = ({ user, refresh, limit }: LFMProps) => {
+const LastFMPlaylist = ({ user = "vagab0nd_", refresh = 30, limit = 10 }: LFMProps) => {
   const LFM = import.meta.env.VITE_LASTFM;
   const [songs, setSongs] = useState([]);
   const [songError, setSongError] = useState("");
