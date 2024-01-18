@@ -26,7 +26,7 @@ You will need an last.fm API key for this to work. You can get one from [here](h
 You will then want to add the key to your .env file. If you don't have one, create one in your root directory and then add the following.
 
 ```tsx
-VITE_LASTFM = "API_KEY_HERE";
+VITE_LASTFM = "API_KEY_HERE"
 ```
 
 ## Import Component
