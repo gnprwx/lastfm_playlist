@@ -1,14 +1,20 @@
 # lastfm_playlist
-[![npm version](https://badge.fury.io/js/lastfm_playlist.svg)](https://badge.fury.io/js/lastfm_playlist)
-## Install
 
-```
-npm i lastfm_playlist
-```
+[![npm version](https://badge.fury.io/js/lastfm_playlist.svg)](https://badge.fury.io/js/lastfm_playlist)
+
+## Basic project
+
+- In your terminal, run `npm create vite@latest`
+- Name your project
+- Select React
+- Select Typescript or Typescript + SWC
+- Finally, run `npm i lastfm_playlist`
+
+Or if you already have an existing project, just run the last line above.
 
 ## About
 
-Lastfm_playlist is designed to work with the Vite/React combo. It allows you to display the current song playing with album art and a list of songs previously played. If there's no song playing, it will display "No music playing" at the top of the list. I also removed the rendering of placeholder album art as it was unpleasant to display.
+Lastfm_playlist is designed to work with the Vite, React, Typscript combo. It allows you to display the current song playing with album art and a list of songs previously played. If there's no song playing, it will display "No music playing" at the top of the list. I also removed the rendering of placeholder album art as it was unpleasant to display.
 
 ## Screenshot
 
