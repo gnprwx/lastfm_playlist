@@ -19,32 +19,32 @@ const LastFMPlaylist = ({
     refresh = 30,
     limit = 10
 }: LFMProps) => {
-    const LFM = import.meta.env.VITE_LASTFM;
+    const lfm = import.meta.env.VITE_LASTFM;
     const [songs, setSongs] = useState([]);
     const [songError, setSongError] = useState("");
-    const PLACEHOLDER_ART: string = "2a96cbd8b46e442fc41c2b86b821562f.png";
+    const placeholderArt: string = "2a96cbd8b46e442fc41c2b86b821562f.png";
 
     // Minimal Styling
-    const SONGS_LIST: object = {
+    const songsList: object = {
         display: "flex",
         flexDirection: "column",
         gap: "4px",
         listStyle: "none",
     }
-    const CURRENTLY_PLAYING: object = {
+    const currentlyPlaying: object = {
         display: "flex",
         alignItems: "center",
         gap: "8px",
         fontWeight: "700",
         borderRadius: "0.5em",
     }
-    const ALBUM_ART: object = { borderRadius: "0.5em", width: "64px" };
-    const FONT_BOLD: object = { fontWeight: "700" };
+    const albumArt: object = { borderRadius: "0.5em", width: "64px" };
+    const fontBold: object = { fontWeight: "700" };
 
     const getSongs = async () => {
         try {
             const response = await fetch(
-                `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${user}&api_key=${LFM}&limit=${limit}&format=json`)
+                `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${user}&api_key=${lfm}&limit=${limit}&format=json`)
             const data = await response.json();
             setSongs(data.recenttracks.track);
         } catch (error) {
@@ -59,7 +59,7 @@ const LastFMPlaylist = ({
     }, []);
 
     return (
-        <ul style={SONGS_LIST}>
+        <ul style={songsList}>
             {songs.length === 0 &&
                 <>
                     {songError.length === 0 ?
@@ -70,21 +70,21 @@ const LastFMPlaylist = ({
                 </>
             }
             {songs.length === limit &&
-                (<li style={FONT_BOLD}>No music playing</li>)
+                (<li style={fontBold}>No music playing</li>)
             }
             {songs.map(({ artist, name, url, image }: SongTypes, index) => (
                 <li key={index}>
                     <>
                         {songs.length === limit + 1 && index === 0 ?
                             <>
-                                {image[1]["#text"].slice(-36) === PLACEHOLDER_ART ?
-                                    <div style={CURRENTLY_PLAYING}>
+                                {image[1]["#text"].slice(-36) === placeholderArt ?
+                                    <div style={currentlyPlaying}>
                                         <img src={sound} />
                                         <a href={url} target="_blank">{artist["#text"]} - {name}</a>
                                     </div>
                                     :
-                                    <div style={CURRENTLY_PLAYING}>
-                                        <img src={image[3]["#text"]} style={ALBUM_ART} />
+                                    <div style={currentlyPlaying}>
+                                        <img src={image[3]["#text"]} style={albumArt} />
                                         <img src={sound} />
                                         <a href={url} target="_blank">{artist["#text"]} - {name}</a>
                                     </div>
