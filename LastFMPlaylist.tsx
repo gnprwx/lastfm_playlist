@@ -2,97 +2,102 @@ import { useEffect, useState } from "react";
 import sound from "./sound.gif";
 
 interface LFMProps {
-  user: string,
-  refresh: number,
-  limit: number
+    user: string;
+    refresh: number;
+    limit: number;
 }
 
 interface SongTypes {
-  artist: { "#text": string },
-  name: string,
-  url: string,
-  image: { "#text": string }[]
+    artist: { "#text": string };
+    name: string;
+    url: string;
+    image: { "#text": string }[];
 }
 
+const LastFMPlaylist = ({
+    user = "vagab0nd_",
+    refresh = 30,
+    limit = 10
+}: LFMProps) => {
+    const LFM = import.meta.env.VITE_LASTFM;
+    const [songs, setSongs] = useState([]);
+    const [songError, setSongError] = useState("");
+    const PLACEHOLDER_ART: string = "2a96cbd8b46e442fc41c2b86b821562f.png";
 
-const LastFMPlaylist = ({ user = "vagab0nd_", refresh = 30, limit = 10 }: LFMProps) => {
-  const LFM = import.meta.env.VITE_LASTFM;
-  const [songs, setSongs] = useState([]);
-  const [songError, setSongError] = useState("");
-  const PLACEHOLDER_ART: string = "2a96cbd8b46e442fc41c2b86b821562f.png";
-
-  // Minimal Styling
-  const SONGS_LIST: object = {
-    display: "flex",
-    flexDirection: "column",
-    gap: "4px",
-    listStyle: "none"
-  }
-  const CURRENTLY_PLAYING: object = {
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    fontWeight: "700",
-    borderRadius: "0.5em"
-  }
-  const ALBUM_ART: object = { borderRadius: "0.5em", width: "64px" }
-
-  const getSongs = async () => {
-    try {
-      const response = await fetch
-        (`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${user}&api_key=${LFM}&limit=${limit}&format=json`);
-      const data = await response.json();
-      setSongs(data.recenttracks.track);
-    } catch (error) {
-      setSongError("Error fetching songs... ;(")
+    // Minimal Styling
+    const SONGS_LIST: object = {
+        display: "flex",
+        flexDirection: "column",
+        gap: "4px",
+        listStyle: "none",
     }
-  }
+    const CURRENTLY_PLAYING: object = {
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        fontWeight: "700",
+        borderRadius: "0.5em",
+    }
+    const ALBUM_ART: object = { borderRadius: "0.5em", width: "64px" };
+    const FONT_BOLD: object = { fontWeight: "700" };
 
-  useEffect(() => {
-    getSongs();
-    const interval = setInterval(getSongs, (refresh * 1000));
-    return () => clearInterval(interval);
-  }, [])
+    const getSongs = async () => {
+        try {
+            const response = await fetch(
+                `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${user}&api_key=${LFM}&limit=${limit}&format=json`)
+            const data = await response.json();
+            setSongs(data.recenttracks.track);
+        } catch (error) {
+            setSongError("Error fetching songs... ;(");
+        }
+    }
 
-  return (
-    <ul style={SONGS_LIST}>
-      {songs.length === 0 &&
-        <>
-          {songError.length === 0 ?
-            <li>Loading songs...</li>
-            :
-            <li>{songError}</li>}
-        </>
-      }
-      {songs.length === limit &&
-        <li style={{ fontWeight: "700" }}>No music playing</li>
-      }
-      {songs.map(({ artist, name, url, image }: SongTypes, index) =>
-        <li key={index}>
-          <>
-            {songs.length === limit + 1 && index === 0 ?
-              <>
-                {image[1]["#text"].slice(-36) === PLACEHOLDER_ART ?
-                  <div style={CURRENTLY_PLAYING}>
-                    <img src={sound} />
-                    <a href={url} target="_blank">{artist["#text"]} - {name}</a>
-                  </div>
-                  :
-                  <div style={CURRENTLY_PLAYING}>
-                    <img src={image[3]["#text"]} style={ALBUM_ART} />
-                    <img src={sound} />
-                    <a href={url} target="_blank">{artist["#text"]} - {name}</a>
-                  </div>
-                }
-              </>
-              :
-              <a href={url} target="_blank">{artist["#text"]} - {name}</a>
+    useEffect(() => {
+        getSongs();
+        const interval = setInterval(getSongs, refresh * 1000);
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <ul style={SONGS_LIST}>
+            {songs.length === 0 &&
+                <>
+                    {songError.length === 0 ?
+                        (<li>Loading songs...</li>)
+                        :
+                        (<li>{songError}</li>)
+                    }
+                </>
             }
-          </>
-        </li>
-      )}
-    </ul>
-  )
+            {songs.length === limit &&
+                (<li style={FONT_BOLD}>No music playing</li>)
+            }
+            {songs.map(({ artist, name, url, image }: SongTypes, index) => (
+                <li key={index}>
+                    <>
+                        {songs.length === limit + 1 && index === 0 ?
+                            <>
+                                {image[1]["#text"].slice(-36) === PLACEHOLDER_ART ?
+                                    <div style={CURRENTLY_PLAYING}>
+                                        <img src={sound} />
+                                        <a href={url} target="_blank">{artist["#text"]} - {name}</a>
+                                    </div>
+                                    :
+                                    <div style={CURRENTLY_PLAYING}>
+                                        <img src={image[3]["#text"]} style={ALBUM_ART} />
+                                        <img src={sound} />
+                                        <a href={url} target="_blank">{artist["#text"]} - {name}</a>
+                                    </div>
+                                }
+                            </>
+                            :
+                            <a href={url} target="_blank">{artist["#text"]} - {name}</a>
+                        }
+                    </>
+                </li>
+            ))}
+        </ul>
+    )
 }
 
 export default LastFMPlaylist
