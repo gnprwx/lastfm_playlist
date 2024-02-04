@@ -63,14 +63,14 @@ const LastFMPlaylist = ({
       {songs.length === 0 &&
         <>
           {songError.length === 0 ?
-            (<li>Loading songs...</li>)
+            <li>Loading songs...</li>
             :
-            (<li>{songError}</li>)
+            <li>{songError}</li>
           }
         </>
       }
       {songs.length === limit &&
-        (<li style={fontBold}>No music playing</li>)
+        <li style={fontBold}>No music playing</li>
       }
       {songs.map(({ artist, name, url, image }: SongTypes, index) => (
         <li key={index}>
