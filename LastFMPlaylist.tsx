@@ -80,18 +80,18 @@ const LastFMPlaylist = ({
                 {image[1]["#text"].slice(-36) === placeholderArt ?
                   <div style={currentlyPlaying}>
                     <img src={sound} />
-                    <a href={url} target="_blank">{artist["#text"]} - {name}</a>
+                    <a href={url} target="_blank" rel="noreferrer">{artist["#text"]} - {name}</a>
                   </div>
                   :
                   <div style={currentlyPlaying}>
                     <img src={image[3]["#text"]} style={albumArt} />
                     <img src={sound} />
-                    <a href={url} target="_blank">{artist["#text"]} - {name}</a>
+                    <a href={url} target="_blank" rel="noreferrer">{artist["#text"]} - {name}</a>
                   </div>
                 }
               </>
               :
-              <a href={url} target="_blank">{artist["#text"]} - {name}</a>
+              <a href={url} target="_blank" rel="noreferrer">{artist["#text"]} - {name}</a>
             }
           </>
         </li>
